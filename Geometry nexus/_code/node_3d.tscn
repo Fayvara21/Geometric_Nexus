@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://bfsotcf8suom5"]
+
+[ext_resource type="Script" path="res://map_generation.cs" id="1_kqsva"]
+
+[node name="Node3D" type="Node3D"]
+script = ExtResource("1_kqsva")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.707107, -0.353553, 0.612372, 0, 0.866025, 0.5, -0.707107, -0.353553, 0.612372, 14.9345, 10.7196, 14.9345)
+fov = 35.9
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.991797, 0, 0.127826, -0.0487954, 0.924273, 0.3786, -0.118146, -0.381732, 0.916691, 8, 9, 8)
+
+[node name="Floor" type="Node3D" parent="."]
