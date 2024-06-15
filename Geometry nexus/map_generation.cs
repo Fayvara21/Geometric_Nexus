@@ -1,16 +1,19 @@
 using Godot;
 using System;
+using System.Collections;
+using System.Runtime.CompilerServices;
+using System.Threading.Tasks;
 
 public partial class map_generation : Node
 {
 	// 3D model paths:
 	private string floorModelPath = "res://_Assets/floor.glb";
 	
-	
+	//dimensions of the board
 	public int floorXCount = 8;
 	public int floorYCount = 8;
 	public int floorCount = 256;
-	//public PackedScene Floorscene{ get; set; }
+  
 	private void MakeFloor(){
 		//loads the floor 3d model by creating a scene
 		var FloorScene = GD.Load<PackedScene>(floorModelPath);
@@ -24,38 +27,52 @@ public partial class map_generation : Node
 	}
 	private bool floorgeneration = true;
 	private int floorindex = 0;
-	private void UpdateFloor(){
+	
+	private Timer timer;
+	private async void Wait(float delay)
+	{
+		while (true)  // Use a condition to stop the loop if needed
+		{
+			
+
+			// Wait for 1 second
+			await ToSignal(GetTree().CreateTimer(delay), "timeout");
+		}
+	}
+	private async void UpdateFloor(){
 		
 		//positions the generated 64 tiles along a 8x8 grid
 		if (floorgeneration && floorindex < floorCount){
 			for(int y = -floorYCount; y < floorYCount; y++){
 				for(int x = -floorXCount; x < floorXCount; x++){
-					GetNode("Floor").GetChild<Node3D>(floorindex).Position = new Vector3(x, 0 , y);
+					//await ToSignal(GetTree().CreateTimer(0.01f), "timeout");
+					Node3D Currentnode = GetNode("Floor").GetChild<Node3D>(floorindex);
+					
+					Currentnode.Position = new Vector3(x, -10 , y);
+					
+					Tween tween = GetTree().CreateTween();
+					tween.TweenProperty(Currentnode, "position", new Vector3(x, 0, y), 1.0f);
+					//await ToSignal(GetTree().CreateTimer(0.01f), Timer.SignalName.Timeout);
+					
 					floorindex ++;
+					
+					
+					// Wait for 1 second
+
 				}
+				
 			}
 			floorgeneration = false; floorindex = 0;
 		} 
 		
-		// Calculate y-position based on a sine wave
-		for (int x = -floorYCount; x < floorYCount; x++)
-		{
-			float y = Mathf.Sin(floorindex * 0.5f) * 2.0f; // Adjust the frequency and amplitude as needed
 			
-			for (int z = -floorXCount; z < floorXCount; z++)
-			{
-				// Set the position of the tile
-				GetNode("Floor").GetChild<Node3D>(floorindex).Position = new Vector3(x, y, z);
-				floorindex++;
-				if(floorindex >= floorCount){floorindex = 0;}
-
-			}
-		}
+			
 
 	}
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready(){
+		timer = GetNode<Timer>("Timer");
 		MakeFloor();
 		
 	}

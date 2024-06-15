@@ -12,14 +12,29 @@ config_version=5
 
 config/name="Geometry Nexus"
 run/main_scene="res://_code/node_3d.tscn"
-config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
+config/features=PackedStringArray("4.2", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[autoload]
+
+DebugMenu="*res://addons/debug_menu/debug_menu.tscn"
+
+[display]
+
+window/vsync/vsync_mode=0
 
 [dotnet]
 
 project/assembly_name="Geometry Nexus"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/debug_menu/plugin.cfg", "res://addons/orbit_camera/plugin.cfg")
+
+[physics]
+
+common/max_physics_steps_per_frame=1
+
 [rendering]
 
-renderer/rendering_method="gl_compatibility"
-renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0.839216, 0.886275, 0.913725, 1)

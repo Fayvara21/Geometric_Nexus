@@ -1,0 +1,18 @@
+[gd_resource type="ShaderMaterial" load_steps=4 format=3 uid="uid://btqwwv26xdx1y"]
+
+[ext_resource type="Shader" path="res://_Assets/floor_grid.gdshader" id="1_fqr4d"]
+[ext_resource type="Shader" path="res://_Assets/floor.gdshader" id="1_gvtda"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_yg0no"]
+render_priority = 0
+shader = ExtResource("1_fqr4d")
+shader_parameter/gridlineOnEvery = 1.0
+shader_parameter/lineThickness = 0.05
+shader_parameter/originOffset = Vector2(0, 0)
+shader_parameter/color = Color(0, 0, 0, 0.5)
+
+[resource]
+render_priority = 1
+next_pass = SubResource("ShaderMaterial_yg0no")
+shader = ExtResource("1_gvtda")
+shader_parameter/colorstrength = 1.5
