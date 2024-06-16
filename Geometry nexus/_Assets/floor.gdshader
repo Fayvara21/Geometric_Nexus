@@ -1,6 +1,6 @@
 shader_type spatial;
 
-uniform float colorstrength = 1;
+uniform float colorstrength : hint_range(0.0,1.0);
 void vertex() {
 	// Called for every vertex the material is visible on.
 }

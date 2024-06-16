@@ -1,0 +1,10 @@
+[gd_scene load_steps=3 format=3 uid="uid://bryaq5gecwuew"]
+
+[ext_resource type="PackedScene" uid="uid://vhkgh7a7nyf" path="res://_Assets/tower_cannon_1.glb" id="1_j46qn"]
+[ext_resource type="Material" uid="uid://dcus7yr5kjkyb" path="res://_Assets/tower_shader.tres" id="2_d6rhl"]
+
+[node name="tower_cannon_1" instance=ExtResource("1_j46qn")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_d6rhl")
+metadata/object_id = 1

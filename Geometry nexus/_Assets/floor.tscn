@@ -15,7 +15,7 @@ _surfaces = [{
 }]
 blend_shape_mode = 0
 
-[sub_resource type="ArrayMesh" id="ArrayMesh_84iat"]
+[sub_resource type="ArrayMesh" id="ArrayMesh_5g58s"]
 resource_name = "floor_Plane"
 _surfaces = [{
 "aabb": AABB(-1, 0, -1, 2, 1e-05, 2.00001),
@@ -32,27 +32,30 @@ blend_shape_mode = 0
 shadow_mesh = SubResource("ArrayMesh_vls5l")
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_21o3u"]
-render_priority = 0
+render_priority = 1
 shader = ExtResource("1_e0qwi")
 shader_parameter/gridlineOnEvery = 1.0
 shader_parameter/lineThickness = 0.05
 shader_parameter/originOffset = Vector2(0, 0)
 shader_parameter/color = Color(0, 0, 0, 0.5)
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4f5ay"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ia3ih"]
+resource_local_to_scene = true
 next_pass = SubResource("ShaderMaterial_21o3u")
+transparency = 4
 shading_mode = 0
 diffuse_mode = 3
 specular_mode = 1
 disable_ambient_light = true
 disable_fog = true
-albedo_color = Color(1, 0.933333, 0.866667, 1)
+albedo_color = Color(1, 0.933333, 0.866667, 0.996078)
 texture_filter = 0
 
 [node name="floor" type="Node3D"]
 transform = Transform3D(0.5, 0, 0, 0, 0.5, 0, 0, 0, 0.5, 0, 0, 0)
 
 [node name="Plane" type="MeshInstance3D" parent="."]
-mesh = SubResource("ArrayMesh_84iat")
+mesh = SubResource("ArrayMesh_5g58s")
 skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_4f5ay")
+surface_material_override/0 = SubResource("StandardMaterial3D_ia3ih")
+metadata/object_id = 0

@@ -1,0 +1,9 @@
+[gd_scene load_steps=3 format=3 uid="uid://cugukkbl46heo"]
+
+[ext_resource type="PackedScene" uid="uid://b5ov6cgbjjari" path="res://_Assets/tower_base.glb" id="1_whfop"]
+[ext_resource type="Material" uid="uid://dcus7yr5kjkyb" path="res://_Assets/tower_shader.tres" id="2_3ntbu"]
+
+[node name="tower_base" instance=ExtResource("1_whfop")]
+
+[node name="Cube" parent="." index="0"]
+surface_material_override/0 = ExtResource("2_3ntbu")
